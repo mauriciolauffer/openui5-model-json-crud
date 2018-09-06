@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Mauricio Lauffer">
+  <title>openui5-model-json-crud</title>
+  <script id="sap-ui-bootstrap"
+          src="https://openui5.hana.ondemand.com/1.56.3/resources/sap-ui-core.js"
+          data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_belize"
+          data-sap-ui-compatVersion="edge" data-sap-ui-preload="async"
+          data-sap-ui-resourceroots='{
+          "mlauffer.demo.openui5.model.json.crud": "./",
+          "openui5.model.json.crud": "../../dist/resources/openui5/model/json/crud"}'></script>
+</head>
+<body class="sapUiBody" role="application">
+<div id="content"></div>
+<script>
+  sap.ui.getCore().attachInit(function() {
+    "use strict";
+    sap.ui.require([
+      "sap/ui/core/ComponentContainer"
+    ], function(ComponentContainer) {
+      let comp = new ComponentContainer({
+        id: "mlauffer_crudmodel",
+        name: "mlauffer.demo.openui5.model.json.crud",
+        manifest: true,
+        async: true,
+        componentCreated: function(evt) {
+          comp = evt.getParameter('component');
+        }
+      });
+      comp.placeAt('content');
+    });
+  });
+</script>
+</body>
+</html>

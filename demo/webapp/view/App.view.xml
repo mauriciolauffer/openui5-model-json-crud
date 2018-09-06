@@ -1,0 +1,14 @@
+<mvc:View controllerName="mlauffer.demo.openui5.model.json.crud.controller.App" displayBlock="true"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns="sap.m">
+    <Shell>
+        <App>
+            <Page id="page" title="{i18n>TITLE}">
+                <List items="{CRUDModel>/DBZ/results/}">
+                    <StandardListItem title="{CRUDModel>title}" description="{CRUDModel>synopsis}"
+                                      icon="{CRUDModel>image_url}" iconDensityAware="false"/>
+                </List>
+            </Page>
+        </App>
+    </Shell>
+</mvc:View>

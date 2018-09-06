@@ -1,0 +1,30 @@
+{
+	"sap.app": {
+		"id": "mlauffer.demo.openui5.model.json.crud",
+		"type": "application",
+    "i18n": "i18n/i18n.properties"
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+        "openui5.model.json.crud": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "mlauffer.demo.openui5.model.json.crud.i18n.i18n"
+				}
+			}
+		},
+		"rootView": {
+			"viewName": "mlauffer.demo.openui5.model.json.crud.view.App",
+			"id": "rootApp",
+			"type": "XML",
+      "async": true
+		}
+	}
+}

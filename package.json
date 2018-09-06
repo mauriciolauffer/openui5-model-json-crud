@@ -1,0 +1,50 @@
+{
+  "name": "openui5-model-json-crud",
+  "version": "0.0.1",
+  "description": "An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations.",
+  "homepage": "https://github.com/mauriciolauffer/openui5-model-json-crud#readme",
+  "author": "Mauricio Lauffer",
+  "license": "MIT",
+  "keywords": [
+    "openui5",
+    "sapui5",
+    "ui5",
+    "ui5lab",
+    "model",
+    "JSON",
+    "CRUD"
+  ],
+  "main": "dist/resources/openui5/model/json/crud/library-preload.js",
+  "dependencies": {
+    "@openui5/sap.m": "^1.56.4",
+    "@openui5/sap.ui.core": "^1.56.4",
+    "@openui5/themelib_sap_belize": "^1.56.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "karma": "^2.0.4",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-coveralls": "^2.0.0",
+    "karma-openui5": "^0.2.3",
+    "karma-qunit": "^2.1.0",
+    "karma-sinon": "^1.0.5",
+    "qunit": "^2.6.1",
+    "sinon": "^6.2.0"
+  },
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build",
+    "test": "karma start",
+    "test-ci": "karma start karma.ci.conf",
+    "preversion": "npm run test-ci",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauriciolauffer/openui5-model-json-crud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mauriciolauffer/openui5-model-json-crud/issues"
+  }
+}
