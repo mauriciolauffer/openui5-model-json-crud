@@ -16,11 +16,11 @@
   ],
   "main": "dist/resources/openui5/model/json/crud/library-preload.js",
   "dependencies": {
-    "@openui5/sap.m": "^1.56.4",
     "@openui5/sap.ui.core": "^1.56.4",
     "@openui5/themelib_sap_belize": "^1.56.4"
   },
   "devDependencies": {
+    "@openui5/sap.m": "^1.56.4",
     "eslint": "^5.2.0",
     "karma": "^2.0.4",
     "karma-chrome-launcher": "^2.2.0",
@@ -38,6 +38,7 @@
     "test": "karma start",
     "test-ci": "karma start karma.ci.conf",
     "preversion": "npm run test-ci",
+    "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
   },
   "repository": {
