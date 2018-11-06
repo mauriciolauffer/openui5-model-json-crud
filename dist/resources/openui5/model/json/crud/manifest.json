@@ -3,7 +3,7 @@
     "id": "openui5.model.json.crud",
     "type": "library",
     "applicationVersion": {
-      "version": "${version}"
+      "version": "0.0.5"
     },
     "title": "An OpenUI5 library..."
   },
