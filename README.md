@@ -1,5 +1,5 @@
 # openui5-model-json-crud
-An OpenUI5 JSON Model for CRUD (Create, Read, Update and Read) operations. It uses fetch (not jQuery.ajax) to send requests to the server and populates a JSON Model with the responses.
+An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations. It uses fetch (not jQuery.ajax) to send requests to the server and populates a JSON Model with the responses.
 As aforementioned, OpenUI5 CRUD JSON Model uses fetch hence it returns Promises.
 
 ## Demo
