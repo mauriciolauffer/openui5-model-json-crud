@@ -5,7 +5,7 @@
     "description": "An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations.",
     "source": "https://github.com/mauriciolauffer/openui5-model-json-crud.git",
     "documentation": "https://github.com/mauriciolauffer/openui5-model-json-crud#readme",
-    "demo": "https://htmlpreview.github.io/?https://github.com/mauriciolauffer/openui5-model-json-crud/blob/master/demo/webapp/index.html",
+    "demo": "https://mauriciolauffer.github.io/openui5-model-json-crud/demo/webapp/index.html",
     "version": "1.0.0",
     "license": "MIT",
     "content": {
@@ -19,7 +19,7 @@
           "id": "openui5-model-json-crud-01",
           "name": "CRUD JSON Model",
           "description": "An interactive playground for openui5-model-json-crud",
-          "url": "https://htmlpreview.github.io/?https://github.com/mauriciolauffer/openui5-model-json-crud/blob/master/demo/webapp/index.html"
+          "url": "https://mauriciolauffer.github.io/openui5-model-json-crud/demo/webapp/index.html"
         }]
       }
     }

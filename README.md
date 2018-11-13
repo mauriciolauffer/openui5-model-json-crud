@@ -5,7 +5,7 @@ As aforementioned, OpenUI5 CRUD JSON Model uses fetch hence it returns Promises.
 ## Demo
 You can checkout a live demo here:
 
-https://htmlpreview.github.io/?https://github.com/mauriciolauffer/openui5-model-json-crud/blob/master/demo/webapp/index.html
+https://mauriciolauffer.github.io/openui5-model-json-crud/demo/webapp/index.html
 
 [<img src="openui5-model-json-crud.png">](https://raw.githubusercontent.com/mauriciolauffer/openui5-model-json-crud/master/openui5-model-json-crud.png)
 
