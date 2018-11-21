@@ -1,8 +1,8 @@
 sap.ui.define([
-  'jquery.sap.global',
+  'sap/base/Log',
   'sap/ui/core/mvc/Controller',
   'openui5/model/json/crud/CRUDModel'
-], function($, Controller, CRUDModel) {
+], function(Log, Controller, CRUDModel) {
   'use strict';
 
   return Controller.extend('mlauffer.demo.openui5.model.json.crud.controller.App', {
@@ -15,10 +15,10 @@ sap.ui.define([
       // empty value does not update the local model, it only returns the response
       crudModel.read('search/anime?q=DBZ', '/DBZ')
         .then(function() {
-          $.sap.log.info('Data selected from API');
+          Log.info('Data selected from API');
         })
         .catch(function(err) {
-          $.sap.log.error(err.toString());
+          Log.error(err.toString());
         });
     }
   });
