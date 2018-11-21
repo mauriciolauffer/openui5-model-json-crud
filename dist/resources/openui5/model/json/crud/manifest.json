@@ -3,9 +3,9 @@
     "id": "openui5.model.json.crud",
     "type": "library",
     "applicationVersion": {
-      "version": "0.0.6"
+      "version": "0.0.7"
     },
-    "title": "An OpenUI5 library..."
+    "title": "An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations using fetch."
   },
   "sap.ui": {
     "technology": "UI5",
@@ -17,7 +17,7 @@
   },
   "sap.ui5": {
     "dependencies": {
-      "minUI5Version": "1.30.0",
+      "minUI5Version": "1.56.0",
       "libs": {
         "sap.ui.core": {}
       }

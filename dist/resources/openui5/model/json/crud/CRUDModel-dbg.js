@@ -1,10 +1,10 @@
 sap.ui.define([
-  'jquery.sap.global',
+  'sap/base/Log',
   'sap/ui/model/json/JSONModel'
-], function($, JSONModel) {
+], function(Log, JSONModel) {
   'use strict';
 
-  const logger = $.sap.log.getLogger('openui5.model.json.crud.CRUDModel');
+  const logger = Log.getLogger('openui5.model.json.crud.CRUDModel');
   const defaultHttpMethods = {
     create: 'POST',
     read: 'GET',
@@ -13,7 +13,6 @@ sap.ui.define([
   };
   const defaultFetchParameters = {
     body: null,
-    cache: 'no-cache',
     headers: {}
   };
 
@@ -28,7 +27,7 @@ sap.ui.define([
    * @extends sap.ui.model.json.JSONModel
    *
    * @author Mauricio Lauffer
-   * @version 0.0.6
+   * @version 0.0.7
    *
    * @public
    * @alias openui5.model.json.crud.CRUDModel
@@ -107,7 +106,7 @@ sap.ui.define([
     return this._callService(urlPath, parameters)
       .then(function(result) {
         if (propertyPath) {
-          this.setProperty(propertyPath, Object.assign({}, result.data));
+          this.setProperty(propertyPath, result.data);
         }
         return result.response;
       }.bind(this));
@@ -127,7 +126,7 @@ sap.ui.define([
     return this._callService(urlPath, parameters)
       .then(function(result) {
         if (propertyPath) {
-          this.setProperty(propertyPath, Object.assign({}, result.data));
+          this.setProperty(propertyPath, result.data);
         }
         return result.response;
       }.bind(this));
@@ -148,8 +147,7 @@ sap.ui.define([
     return this._callService(urlPath, parameters)
       .then(function(result) {
         if (propertyPath) {
-          const properties = Object.assign({}, this.getProperty(propertyPath));
-          this.setProperty(propertyPath, Object.assign(properties, result.data));
+          this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
         }
         return result.response;
       }.bind(this));
