@@ -170,9 +170,11 @@ sap.ui.define([
           const lastSlash = propertyPath.lastIndexOf('/');
           const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
           const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
-          const modelEntry = this._getObject(objectOnlyPath);
+          const modelEntry = this.getProperty(objectOnlyPath);
           if (Array.isArray(modelEntry[propertyOnlyPath])) {
             modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
+          } else if (Array.isArray(modelEntry)) {
+            modelEntry.splice(propertyOnlyPath, 1);
           } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
             delete modelEntry[propertyOnlyPath];
           } else {

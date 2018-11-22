@@ -175,6 +175,15 @@ sap.ui.require([
           });
       });
 
+      test('Should DELETE data from serviceUrl and delete from the model, entry is an object within an array', (assert) => {
+        const model = new CRUDModel(serviceUrl);
+        model.setProperty(propertyPath, [mockPayload, startData]);
+        return model.delete(urlPath2, propertyPath + '/0')
+          .then(function() {
+            assert.deepEqual(model.getProperty(propertyPath), [startData]);
+          });
+      });
+
       test('Should DELETE data from serviceUrl, it does not update the model', (assert) => {
         const model = new CRUDModel(serviceUrl);
         model.setProperty(propertyPath, [mockPayload, startData]);
