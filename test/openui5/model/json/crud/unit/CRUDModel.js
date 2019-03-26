@@ -1,8 +1,7 @@
 sap.ui.require([
-  'jquery.sap.global',
   'sap/ui/model/json/JSONModel',
   'openui5/model/json/crud/CRUDModel'
-], function($, JSONModel, CRUDModel) {
+], function(JSONModel, CRUDModel) {
   'use strict';
 
   const { test } = QUnit;

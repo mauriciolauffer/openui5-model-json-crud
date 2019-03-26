@@ -2,33 +2,31 @@ module.exports = function(config) {
   'use strict';
 
   config.set({
-    frameworks: ['openui5', 'qunit', 'sinon'],
-    openui5: {
-      path: 'http://localhost:8080/resources/sap-ui-core.js',
-      useMockServer: false
+    frameworks: ['qunit', 'sinon', 'ui5'],
+    ui5: {
+      type: 'library',
+      url: 'http://localhost:8080',
+      htmlrunner: false,
+      config: {
+        theme: 'sap_belize',
+        language: 'en',
+        logLevel: 'WARNING',
+        compatVersion: 'edge',
+        preload: 'async',
+        resourceroots: {
+          'openui5.model.json.crud': 'base/src/openui5/model/json/crud',
+          'test.unit': 'base/test/openui5/model/json/crud/unit'
+        }
+      },
+      tests: ['test/unit/allTests']
     },
     client: {
-      openui5: {
-        config: {
-          theme: 'sap_belize',
-          language: 'EN',
-          bindingSyntax: 'complex',
-          preload: 'async',
-          logLevel: 'ERROR',
-          libs: 'openui5.model.json.crud',
-          resourceroots: {
-            'openui5.model.json.crud': 'base/src/openui5/model/json/crud',
-            'test.unit': 'base/test/openui5/model/json/crud/unit'
-          }
-        },
-        tests: ['test/unit/allTests']
-      },
-      clearContext: false,
+      useIframe: false,
       qunit: {
         showUI: true,
         testTimeout: 20000, //20 secs
         autostart: false,
-        noglobals: false
+        noglobals: true
       }
     },
     files: [
@@ -61,7 +59,6 @@ module.exports = function(config) {
       }
     },
     autoWatch: true,
-    useIframe: false,
     browsers: ['Chrome'],
     reporters: ['progress', 'coverage'],
     reportSlowerThan: 200,
