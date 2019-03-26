@@ -19,7 +19,11 @@
 				"settings": {
 					"bundleName": "mlauffer.demo.openui5.model.json.crud.i18n.i18n"
 				}
-			}
+			},
+      "CRUDModel": {
+        "type": "openui5.model.json.crud.CRUDModel",
+        "settings": "https://api.jikan.moe/v3/"
+      }
 		},
 		"rootView": {
 			"viewName": "mlauffer.demo.openui5.model.json.crud.view.App",
