@@ -27,7 +27,7 @@ sap.ui.define([
    * @extends sap.ui.model.json.JSONModel
    *
    * @author Mauricio Lauffer
-   * @version 0.0.9
+   * @version 0.0.10
    *
    * @public
    * @alias openui5.model.json.crud.CRUDModel
