@@ -4,14 +4,14 @@ module.exports = function(config) {
   config.set({
     frameworks: ['qunit', 'sinon', 'ui5'],
     ui5: {
+      mode: 'script',
       type: 'library',
       url: 'http://localhost:8080',
-      htmlrunner: false,
       config: {
-        theme: 'sap_belize',
+        animation: 'false',
+        compatVersion: 'edge',
         language: 'en',
         logLevel: 'WARNING',
-        compatVersion: 'edge',
         preload: 'async',
         resourceroots: {
           'openui5.model.json.crud': 'base/src/openui5/model/json/crud',
@@ -29,20 +29,6 @@ module.exports = function(config) {
         noglobals: true
       }
     },
-    files: [
-      {
-        pattern: 'src/**',
-        included: false,
-        served: true,
-        watched: true
-      },
-      {
-        pattern: 'test/openui5/model/json/crud/unit/**',
-        included: false,
-        served: true,
-        watched: true
-      }
-    ],
     preprocessors: {
       'src/**/!(thirdparty)/*.js': ['coverage']
     },
