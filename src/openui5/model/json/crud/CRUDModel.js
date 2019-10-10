@@ -1,7 +1,15 @@
 sap.ui.define([
   'sap/base/Log',
   'sap/ui/model/json/JSONModel'
-], function(Log, JSONModel) {
+],
+/**
+ * CRUDModel extends JSONModel to support CRUD
+ *
+ * @param {typeof sap.base.Log} Log UI5 log
+ * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 MockServer
+ * @returns {object} CRUDModel object, an extended UI5 JSONModel
+ */
+function(Log, JSONModel) {
   'use strict';
 
   const logger = Log.getLogger('openui5.model.json.crud.CRUDModel');
@@ -17,18 +25,14 @@ sap.ui.define([
   };
 
   /**
-   * Constructor for a new CRUDModel.
-   *
-   * @param {string} serviceUrl Base URI of the service to request data from;
-   *                            additional URL parameters appended here will be appended to every request.
-   * @class
-   * Model implementation for CRUD JSON.
-   *
-   * @extends sap.ui.model.json.JSONModel
+   * OpenUI5 CRUDModel extends JSONModel to support CRUD operations.
    *
    * @author Mauricio Lauffer
    * @version ${version}
    *
+   * @class
+   * @namespace
+   * @name openui5.model.json.crud
    * @public
    * @alias openui5.model.json.crud.CRUDModel
    */
@@ -39,7 +43,17 @@ sap.ui.define([
         'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters']
     },
 
-    constructor: function(serviceUrl) {
+  /**
+   * Constructor for a new Validator.
+   * @class
+   * @extends sap.ui.model.json.JSONModel
+   *
+   * @constructor
+   * @param {string} serviceUrl Base URI of the service to request data from;
+   *                            additional URL parameters appended here will be appended to every request.
+   * @public
+   */
+  constructor: function(serviceUrl) {
       JSONModel.apply(this, []);
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
@@ -215,7 +229,7 @@ sap.ui.define([
     const url = this._serviceUrl + path;
     const result = {
       data: null,
-      response: null
+      response: {}
     };
     return fetch(url, parameters)
       .then(function (response) {
