@@ -3,9 +3,9 @@ sap.ui.define([
   'sap/ui/model/json/JSONModel'
 ],
 /**
- * CRUDModel extends JSONModel to support CRUD
+ * Module Dependencies
  *
- * @param {typeof sap.base.Log} Log UI5 log
+ * @param {typeof sap.base.Log} Log UI5 logger
  * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 MockServer
  * @returns {object} CRUDModel object, an extended UI5 JSONModel
  */
