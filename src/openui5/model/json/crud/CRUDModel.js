@@ -1,6 +1,10 @@
+/*
+ * ${copyright}
+ */
+
 sap.ui.define([
   'sap/base/Log',
-  'sap/ui/model/json/JSONModel'
+  'sap/ui/model/json/JSONModel',
 ],
 /**
  * Module Dependencies
@@ -17,11 +21,11 @@ function(Log, JSONModel) {
     create: 'POST',
     read: 'GET',
     update: 'PUT',
-    delete: 'DELETE'
+    delete: 'DELETE',
   };
   const defaultFetchParameters = {
     body: null,
-    headers: {}
+    headers: {},
   };
 
   /**
@@ -39,11 +43,11 @@ function(Log, JSONModel) {
   const CRUDModel = JSONModel.extend('openui5.model.json.crud.CRUDModel', {
     metadata: {
       library: 'openui5.model.json.crud',
-      publicMethods : ['create', 'read', 'update', 'delete',
-        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters']
+      publicMethods: ['create', 'read', 'update', 'delete',
+        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters'],
     },
 
-  /**
+    /**
    * Constructor for a new Validator.
    * @class
    * @extends sap.ui.model.json.JSONModel
@@ -53,12 +57,12 @@ function(Log, JSONModel) {
    *                            additional URL parameters appended here will be appended to every request.
    * @public
    */
-  constructor: function(serviceUrl) {
+    constructor: function(serviceUrl) {
       JSONModel.apply(this, []);
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
       this._httpMethods = Object.assign({}, defaultHttpMethods);
-    }
+    },
   });
 
   /**
@@ -118,12 +122,12 @@ function(Log, JSONModel) {
   CRUDModel.prototype.create = function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().create);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, result.data);
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, result.data);
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -138,12 +142,12 @@ function(Log, JSONModel) {
   CRUDModel.prototype.read = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().read);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, result.data);
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, result.data);
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -159,12 +163,12 @@ function(Log, JSONModel) {
   CRUDModel.prototype.update = function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().update);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -179,24 +183,24 @@ function(Log, JSONModel) {
   CRUDModel.prototype.delete = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().delete);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          const lastSlash = propertyPath.lastIndexOf('/');
-          const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
-          const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
-          const modelEntry = this.getProperty(objectOnlyPath);
-          if (Array.isArray(modelEntry[propertyOnlyPath])) {
-            modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
-          } else if (Array.isArray(modelEntry)) {
-            modelEntry.splice(propertyOnlyPath, 1);
-          } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
-            delete modelEntry[propertyOnlyPath];
-          } else {
-            logger.warning(propertyPath + ' was not found in the local model');
+        .then(function(result) {
+          if (propertyPath) {
+            const lastSlash = propertyPath.lastIndexOf('/');
+            const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
+            const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
+            const modelEntry = this.getProperty(objectOnlyPath);
+            if (Array.isArray(modelEntry[propertyOnlyPath])) {
+              modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
+            } else if (Array.isArray(modelEntry)) {
+              modelEntry.splice(propertyOnlyPath, 1);
+            } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
+              delete modelEntry[propertyOnlyPath];
+            } else {
+              logger.warning(propertyPath + ' was not found in the local model');
+            }
           }
-        }
-        return result.response;
-      }.bind(this));
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -229,21 +233,21 @@ function(Log, JSONModel) {
     const url = this._serviceUrl + path;
     const result = {
       data: null,
-      response: {}
+      response: {},
     };
     return fetch(url, parameters)
-      .then(function (response) {
-        if (response.ok) {
-          result.response = response.clone();
-          return response.json();
-        } else {
-          throw response;
-        }
-      })
-      .then(function(data) {
-        result.data = data;
-        return result;
-      });
+        .then(function(response) {
+          if (response.ok) {
+            result.response = response.clone();
+            return response.json();
+          } else {
+            throw response;
+          }
+        })
+        .then(function(data) {
+          result.data = data;
+          return result;
+        });
   };
 
   return CRUDModel;

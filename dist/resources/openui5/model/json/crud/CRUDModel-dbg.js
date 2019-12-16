@@ -1,7 +1,21 @@
+/*
+ * openui5-model-json-crud
+ * (c) Copyright 2018-2019 Mauricio Lauffer
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+ */
+
 sap.ui.define([
   'sap/base/Log',
-  'sap/ui/model/json/JSONModel'
-], function(Log, JSONModel) {
+  'sap/ui/model/json/JSONModel',
+],
+/**
+ * Module Dependencies
+ *
+ * @param {typeof sap.base.Log} Log UI5 logger
+ * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 MockServer
+ * @returns {object} CRUDModel object, an extended UI5 JSONModel
+ */
+function(Log, JSONModel) {
   'use strict';
 
   const logger = Log.getLogger('openui5.model.json.crud.CRUDModel');
@@ -9,42 +23,48 @@ sap.ui.define([
     create: 'POST',
     read: 'GET',
     update: 'PUT',
-    delete: 'DELETE'
+    delete: 'DELETE',
   };
   const defaultFetchParameters = {
     body: null,
-    headers: {}
+    headers: {},
   };
 
   /**
-   * Constructor for a new CRUDModel.
-   *
-   * @param {string} serviceUrl Base URI of the service to request data from;
-   *                            additional URL parameters appended here will be appended to every request.
-   * @class
-   * Model implementation for CRUD JSON.
-   *
-   * @extends sap.ui.model.json.JSONModel
+   * OpenUI5 CRUDModel extends JSONModel to support CRUD operations.
    *
    * @author Mauricio Lauffer
    * @version 0.0.10
    *
+   * @class
+   * @namespace
+   * @name openui5.model.json.crud
    * @public
    * @alias openui5.model.json.crud.CRUDModel
    */
   const CRUDModel = JSONModel.extend('openui5.model.json.crud.CRUDModel', {
     metadata: {
       library: 'openui5.model.json.crud',
-      publicMethods : ['create', 'read', 'update', 'delete',
-        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters']
+      publicMethods: ['create', 'read', 'update', 'delete',
+        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters'],
     },
 
+    /**
+   * Constructor for a new Validator.
+   * @class
+   * @extends sap.ui.model.json.JSONModel
+   *
+   * @constructor
+   * @param {string} serviceUrl Base URI of the service to request data from;
+   *                            additional URL parameters appended here will be appended to every request.
+   * @public
+   */
     constructor: function(serviceUrl) {
       JSONModel.apply(this, []);
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
       this._httpMethods = Object.assign({}, defaultHttpMethods);
-    }
+    },
   });
 
   /**
@@ -104,12 +124,12 @@ sap.ui.define([
   CRUDModel.prototype.create = function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().create);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, result.data);
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, result.data);
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -124,12 +144,12 @@ sap.ui.define([
   CRUDModel.prototype.read = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().read);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, result.data);
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, result.data);
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -145,12 +165,12 @@ sap.ui.define([
   CRUDModel.prototype.update = function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().update);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
-        }
-        return result.response;
-      }.bind(this));
+        .then(function(result) {
+          if (propertyPath) {
+            this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
+          }
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -165,24 +185,24 @@ sap.ui.define([
   CRUDModel.prototype.delete = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().delete);
     return this._callService(urlPath, parameters)
-      .then(function(result) {
-        if (propertyPath) {
-          const lastSlash = propertyPath.lastIndexOf('/');
-          const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
-          const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
-          const modelEntry = this.getProperty(objectOnlyPath);
-          if (Array.isArray(modelEntry[propertyOnlyPath])) {
-            modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
-          } else if (Array.isArray(modelEntry)) {
-            modelEntry.splice(propertyOnlyPath, 1);
-          } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
-            delete modelEntry[propertyOnlyPath];
-          } else {
-            logger.warning(propertyPath + ' was not found in the local model');
+        .then(function(result) {
+          if (propertyPath) {
+            const lastSlash = propertyPath.lastIndexOf('/');
+            const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
+            const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
+            const modelEntry = this.getProperty(objectOnlyPath);
+            if (Array.isArray(modelEntry[propertyOnlyPath])) {
+              modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
+            } else if (Array.isArray(modelEntry)) {
+              modelEntry.splice(propertyOnlyPath, 1);
+            } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
+              delete modelEntry[propertyOnlyPath];
+            } else {
+              logger.warning(propertyPath + ' was not found in the local model');
+            }
           }
-        }
-        return result.response;
-      }.bind(this));
+          return result.response;
+        }.bind(this));
   };
 
   /**
@@ -215,21 +235,21 @@ sap.ui.define([
     const url = this._serviceUrl + path;
     const result = {
       data: null,
-      response: null
+      response: {},
     };
     return fetch(url, parameters)
-      .then(function (response) {
-        if (response.ok) {
-          result.response = response.clone();
-          return response.json();
-        } else {
-          throw response;
-        }
-      })
-      .then(function(data) {
-        result.data = data;
-        return result;
-      });
+        .then(function(response) {
+          if (response.ok) {
+            result.response = response.clone();
+            return response.json();
+          } else {
+            throw response;
+          }
+        })
+        .then(function(data) {
+          result.data = data;
+          return result;
+        });
   };
 
   return CRUDModel;
