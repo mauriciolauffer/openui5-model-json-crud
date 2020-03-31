@@ -142,7 +142,7 @@ function(Log, JSONModel) {
   CRUDModel.prototype.read = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().read);
     return this._callService(urlPath, parameters)
-        .then(function(result) {
+        .then(function(result) { //eslint-disable-line
           if (propertyPath) {
             this.setProperty(propertyPath, result.data);
           }
