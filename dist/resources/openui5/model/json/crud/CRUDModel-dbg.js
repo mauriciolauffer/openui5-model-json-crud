@@ -1,12 +1,12 @@
 /*
  * openui5-model-json-crud
- * (c) Copyright 2018-2019 Mauricio Lauffer
+ * (c) Copyright 2018-2020 Mauricio Lauffer
  * Licensed under the MIT license. See LICENSE file in the project root for full license information.
  */
 
 sap.ui.define([
   'sap/base/Log',
-  'sap/ui/model/json/JSONModel',
+  'sap/ui/model/json/JSONModel'
 ],
 /**
  * Module Dependencies
@@ -23,11 +23,11 @@ function(Log, JSONModel) {
     create: 'POST',
     read: 'GET',
     update: 'PUT',
-    delete: 'DELETE',
+    delete: 'DELETE'
   };
   const defaultFetchParameters = {
     body: null,
-    headers: {},
+    headers: {}
   };
 
   /**
@@ -46,7 +46,7 @@ function(Log, JSONModel) {
     metadata: {
       library: 'openui5.model.json.crud',
       publicMethods: ['create', 'read', 'update', 'delete',
-        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters'],
+        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters']
     },
 
     /**
@@ -64,7 +64,7 @@ function(Log, JSONModel) {
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
       this._httpMethods = Object.assign({}, defaultHttpMethods);
-    },
+    }
   });
 
   /**
@@ -144,7 +144,7 @@ function(Log, JSONModel) {
   CRUDModel.prototype.read = function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().read);
     return this._callService(urlPath, parameters)
-        .then(function(result) {
+        .then(function(result) { //eslint-disable-line
           if (propertyPath) {
             this.setProperty(propertyPath, result.data);
           }
@@ -235,7 +235,7 @@ function(Log, JSONModel) {
     const url = this._serviceUrl + path;
     const result = {
       data: null,
-      response: {},
+      response: {}
     };
     return fetch(url, parameters)
         .then(function(response) {

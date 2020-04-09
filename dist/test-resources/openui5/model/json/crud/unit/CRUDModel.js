@@ -1,6 +1,6 @@
 sap.ui.require([
   'sap/ui/model/json/JSONModel',
-  'openui5/model/json/crud/CRUDModel',
+  'openui5/model/json/crud/CRUDModel'
 ], function(JSONModel, CRUDModel) {
   'use strict';
 
@@ -23,7 +23,7 @@ sap.ui.require([
       },
       json: function() {
         return Promise.resolve(mockPayload);
-      },
+      }
     };
   }
 
@@ -33,7 +33,7 @@ sap.ui.require([
     },
     after: function() {
       sandbox.restore();
-    },
+    }
   }, function() {
     QUnit.module('constructor', () => {
       test('Should instantiate the control', (assert) => {
