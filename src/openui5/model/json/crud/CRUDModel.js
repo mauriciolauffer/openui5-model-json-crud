@@ -4,7 +4,7 @@
 
 sap.ui.define([
   'sap/base/Log',
-  'sap/ui/model/json/JSONModel',
+  'sap/ui/model/json/JSONModel'
 ],
 /**
  * Module Dependencies
@@ -21,11 +21,11 @@ function(Log, JSONModel) {
     create: 'POST',
     read: 'GET',
     update: 'PUT',
-    delete: 'DELETE',
+    delete: 'DELETE'
   };
   const defaultFetchParameters = {
     body: null,
-    headers: {},
+    headers: {}
   };
 
   /**
@@ -44,7 +44,7 @@ function(Log, JSONModel) {
     metadata: {
       library: 'openui5.model.json.crud',
       publicMethods: ['create', 'read', 'update', 'delete',
-        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters'],
+        'getHttpMethods', 'setHttpMethods', 'getFetchParameters', 'setFetchParameters']
     },
 
     /**
@@ -62,7 +62,7 @@ function(Log, JSONModel) {
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
       this._httpMethods = Object.assign({}, defaultHttpMethods);
-    },
+    }
   });
 
   /**
@@ -233,7 +233,7 @@ function(Log, JSONModel) {
     const url = this._serviceUrl + path;
     const result = {
       data: null,
-      response: {},
+      response: {}
     };
     return fetch(url, parameters)
         .then(function(response) {

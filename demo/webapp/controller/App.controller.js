@@ -1,6 +1,6 @@
 sap.ui.define([
   'sap/base/Log',
-  'sap/ui/core/mvc/Controller',
+  'sap/ui/core/mvc/Controller'
 ], function(Log, Controller) {
   'use strict';
 
@@ -16,6 +16,6 @@ sap.ui.define([
           .catch(function(err) {
             Log.error(err.toString());
           });
-    },
+    }
   });
 });
