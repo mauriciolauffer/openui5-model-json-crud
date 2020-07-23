@@ -10,7 +10,7 @@ sap.ui.define([
  * Module Dependencies
  *
  * @param {typeof sap.base.Log} Log UI5 logger
- * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 MockServer
+ * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 JSONModel
  * @returns {object} CRUDModel object, an extended UI5 JSONModel
  */
 function(Log, JSONModel) {
