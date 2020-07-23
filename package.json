@@ -16,8 +16,7 @@
   ],
   "main": "dist/resources/openui5/model/json/crud/library-preload.js",
   "files": [
-    "dist",
-    "demo"
+    "dist"
   ],
   "dependencies": {},
   "devDependencies": {
