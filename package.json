@@ -31,10 +31,10 @@
   },
   "scripts": {
     "start": "ui5 serve",
-    "build": "ui5 build --clean-dist",
+    "build": "ui5 build --clean-dest",
     "test": "karma start",
     "lint": "eslint src && eslint test",
-    "lint:fix": "eslint src --fix && eslint test --fix",
+    "lint-fix": "eslint src --fix && eslint test --fix",
     "test-ci": "karma start karma.ci.conf",
     "preversion": "npm run test-ci",
     "version": "npm run build && git add -A dist",
