@@ -6,12 +6,19 @@ module.exports = function(config) {
     ui5: {
       type: 'library'
     },
+    junitReporter: {
+      outputDir: 'reports',
+      outputFile: undefined,
+      useBrowserName: false,
+      xmlVersion: 1
+    },
     preprocessors: {
       'src/**/!(thirdparty)/*.js': ['coverage']
     },
     coverageReporter: {
       type: 'lcov',
-      dir: 'coverage/',
+      dir: 'reports',
+      subdir: 'coverage',
       check: {
         global: {
           statements: 80,
@@ -28,7 +35,7 @@ module.exports = function(config) {
     logLevel: config.LOG_ERROR,
     autoWatch: true,
     useIframe: false,
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'junit'],
     reportSlowerThan: 200,
     singleRun: false
   });

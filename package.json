@@ -23,13 +23,14 @@
   "dependencies": {},
   "devDependencies": {
     "@openui5/ts-types": "^1.60.5",
-    "eslint": "^7.11.0",
-    "eslint-config-mlauffer-ui5": "0.0.4",
-    "karma": "^5.2.3",
+    "eslint": "^7.18.0",
+    "eslint-config-mlauffer-ui5": "^0.0.4",
+    "karma": "^6.0.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-coveralls": "^2.1.0",
-    "karma-ui5": "^2.3.1"
+    "karma-junit-reporter": "^2.0.1",
+    "karma-ui5": "^2.3.2"
   },
   "scripts": {
     "start": "ui5 serve",
@@ -37,7 +38,8 @@
     "test": "karma start",
     "lint": "eslint src && eslint test",
     "lint-fix": "eslint src --fix && eslint test --fix",
-    "test-ci": "karma start karma.ci.conf",
+    "lint-ci": "eslint -f json src > reports/lint.json",
+    "test-ci": "npm run lint-ci && karma start karma.ci.conf",
     "preversion": "npm run test-ci",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"

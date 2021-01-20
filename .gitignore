@@ -1,4 +1,5 @@
 build/
+reports/
 coverage/
 data/logs/
 .env
