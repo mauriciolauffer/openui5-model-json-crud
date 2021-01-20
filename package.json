@@ -39,7 +39,7 @@
     "lint": "eslint src && eslint test",
     "lint-fix": "eslint src --fix && eslint test --fix",
     "lint-ci": "eslint -f json src > reports/lint.json",
-    "test-ci": "npm run lint-ci && karma start karma.ci.conf",
+    "test-ci": "karma start karma.ci.conf && npm run lint-ci",
     "preversion": "npm run test-ci",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
