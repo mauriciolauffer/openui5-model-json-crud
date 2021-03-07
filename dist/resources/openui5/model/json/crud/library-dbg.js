@@ -15,7 +15,7 @@ sap.ui.define([
    * @namespace
    * @name openui5.model.json.crud
    * @author Mauricio Lauffer
-   * @version 0.0.14
+   * @version 0.0.15
    * @public
    */
   return sap.ui.getCore().initLibrary({
@@ -27,6 +27,6 @@ sap.ui.define([
       'openui5.model.json.crud.CRUDModel'
     ],
     noLibraryCSS: true,
-    version: '0.0.14'
+    version: '0.0.15'
   });
 });
