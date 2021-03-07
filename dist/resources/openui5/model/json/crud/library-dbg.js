@@ -1,10 +1,12 @@
 /*
  * openui5-model-json-crud
- * (c) Copyright 2018-2020 Mauricio Lauffer
+ * (c) Copyright 2018-2021 Mauricio Lauffer
  * Licensed under the MIT license. See LICENSE file in the project root for full license information.
  */
 
-sap.ui.define([], function() {
+sap.ui.define([
+  'sap/ui/core/library'
+], function() {
   'use strict';
 
   /**
