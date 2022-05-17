@@ -14,7 +14,7 @@ sap.ui.define([
  * Module Dependencies
  *
  * @param {sap.ui.core.Core} Core - sap.ui.core.Core
- * @returns {object} openui5.tour library
+ * @returns {object} openui5.model.json.crud library
  */
 function(Core) {
   /**
