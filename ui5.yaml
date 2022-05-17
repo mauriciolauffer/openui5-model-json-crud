@@ -1,4 +1,4 @@
-specVersion: '2.2'
+specVersion: '2.6'
 metadata:
   name: openui5-model-json-crud
   copyright: |-
@@ -8,7 +8,13 @@ metadata:
 type: library
 framework:
   name: OpenUI5
-  version: 1.80.0
+  version: 1.96.0
   libraries:
     - name: sap.ui.core
       development: true
+    - name: sap.m
+      development: true
+builder:
+  resources:
+    excludes:
+      - "/test-resources/**"

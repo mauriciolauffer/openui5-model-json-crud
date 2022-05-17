@@ -1,24 +1,17 @@
-module.exports = function(config) {
-  'use strict';
+'use strict';
 
+module.exports = function(config) {
   config.set({
     frameworks: ['ui5'],
     ui5: {
       type: 'library'
-    },
-    junitReporter: {
-      outputDir: 'reports',
-      outputFile: undefined,
-      useBrowserName: false,
-      xmlVersion: 1
     },
     preprocessors: {
       'src/**/!(thirdparty)/*.js': ['coverage']
     },
     coverageReporter: {
       type: 'lcov',
-      dir: 'reports',
-      subdir: 'coverage',
+      dir: 'coverage/',
       check: {
         global: {
           statements: 80,
@@ -35,7 +28,7 @@ module.exports = function(config) {
     logLevel: config.LOG_ERROR,
     autoWatch: true,
     useIframe: false,
-    reporters: ['progress', 'coverage', 'junit'],
+    reporters: ['progress', 'coverage'],
     reportSlowerThan: 200,
     singleRun: false
   });
