@@ -1,9 +1,9 @@
+'use strict';
+
 sap.ui.define([
   'sap/base/Log',
   'sap/ui/core/mvc/Controller'
 ], function(Log, Controller) {
-  'use strict';
-
   return Controller.extend('mlauffer.demo.openui5.model.json.crud.controller.App', {
     onInit: function() {
       // 'search/anime?q=DBZ' is the path to the service to be called, it'll be concatenated to serviceUrl

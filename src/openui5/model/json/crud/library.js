@@ -1,12 +1,20 @@
+'use strict';
+
 /*
  * ${copyright}
  */
 
 sap.ui.define([
+  'sap/ui/core/Core',
   'sap/ui/core/library'
-], function() {
-  'use strict';
-
+],
+/**
+ * Module Dependencies
+ *
+ * @param {sap.ui.core.Core} Core - sap.ui.core.Core
+ * @returns {object} openui5.tour library
+ */
+function(Core) {
   /**
    * OpenUI5 library: openui5.model.json.crud
    *
@@ -16,7 +24,7 @@ sap.ui.define([
    * @version ${version}
    * @public
    */
-  return sap.ui.getCore().initLibrary({
+  Core.initLibrary({
     name: 'openui5.model.json.crud',
     dependencies: [
       'sap.ui.core'
@@ -27,4 +35,6 @@ sap.ui.define([
     noLibraryCSS: true,
     version: '${version}'
   });
+
+  return openui5.model.json.crud; // eslint-disable-line
 });
