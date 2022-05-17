@@ -1,6 +1,8 @@
+'use strict';
+
 /*
  * openui5-model-json-crud
- * (c) Copyright 2018-2021 Mauricio Lauffer
+ * (c) Copyright 2018-2022 Mauricio Lauffer
  * Licensed under the MIT license. See LICENSE file in the project root for full license information.
  */
 
@@ -11,13 +13,11 @@ sap.ui.define([
 /**
  * Module Dependencies
  *
- * @param {typeof sap.base.Log} Log UI5 logger
- * @param {typeof sap.ui.model.json.JSONModel} JSONModel UI5 JSONModel
+ * @param {sap.base.Log} Log UI5 logger
+ * @param {sap.ui.model.json.JSONModel} JSONModel UI5 JSONModel
  * @returns {object} CRUDModel object, an extended UI5 JSONModel
  */
 function(Log, JSONModel) {
-  'use strict';
-
   const logger = Log.getLogger('openui5.model.json.crud.CRUDModel');
   const defaultHttpMethods = {
     create: 'POST',
@@ -35,7 +35,6 @@ function(Log, JSONModel) {
    *
    * @author Mauricio Lauffer
    * @version 0.0.15
-   *
    * @class
    * @namespace
    * @name openui5.model.json.crud
@@ -50,15 +49,15 @@ function(Log, JSONModel) {
     },
 
     /**
-   * Constructor for a new Validator.
-   * @class
-   * @extends sap.ui.model.json.JSONModel
-   *
-   * @constructor
-   * @param {string} serviceUrl Base URI of the service to request data from;
-   *                            additional URL parameters appended here will be appended to every request.
-   * @public
-   */
+     * Constructor for a new Validator.
+     *
+     * @class
+     * @augments sap.ui.model.json.JSONModel
+     * @function Object() { [native code] }
+     * @param {string} serviceUrl Base URI of the service to request data from;
+     *                            additional URL parameters appended here will be appended to every request.
+     * @public
+     */
     constructor: function(serviceUrl) {
       JSONModel.apply(this, []);
       this._serviceUrl = serviceUrl;
@@ -71,7 +70,7 @@ function(Log, JSONModel) {
    * Get Fetch parameters to be used.
    * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
    *
-   * @return {object} Fetch parameters object
+   * @returns {object} Fetch parameters object
    * @public
    */
   CRUDModel.prototype.getFetchParameters = function() {
@@ -93,7 +92,7 @@ function(Log, JSONModel) {
    * Get HTTP methods for CRUD operations.
    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
    *
-   * @return {object} HTTP Methods to be used by the CRUD operations
+   * @returns {object} HTTP Methods to be used by the CRUD operations
    * @public
    */
   CRUDModel.prototype.getHttpMethods = function() {
@@ -118,7 +117,7 @@ function(Log, JSONModel) {
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @param {any} payload The payload to be sent to the service
-   * @return {Promise} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
+   * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
   CRUDModel.prototype.create = function(urlPath, propertyPath, payload) {
@@ -138,7 +137,7 @@ function(Log, JSONModel) {
    *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
-   * @return {Promise} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
+   * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
   CRUDModel.prototype.read = function(urlPath, propertyPath) {
@@ -159,7 +158,7 @@ function(Log, JSONModel) {
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @param {any} payload The payload to be sent to the service
-   * @return {Promise} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
+   * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
   CRUDModel.prototype.update = function(urlPath, propertyPath, payload) {
@@ -179,7 +178,7 @@ function(Log, JSONModel) {
    *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
-   * @return {Promise} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
+   * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
   CRUDModel.prototype.delete = function(urlPath, propertyPath) {
@@ -211,7 +210,7 @@ function(Log, JSONModel) {
    *
    * @param {any} body The payload to be sent to the service
    * @param {string} httpMethod The HTTP Method to be used in the operation
-   * @return {object} Fetch parameters
+   * @returns {object} Fetch parameters
    * @private
    */
   CRUDModel.prototype._mergeParameters = function(body, httpMethod) {
@@ -227,7 +226,7 @@ function(Log, JSONModel) {
    *
    * @param {string} urlPath The path to the service
    * @param {object} parameters Fetch parameters to be used
-   * @return {Promise} Returns a Promise with the Fetch results
+   * @returns {Promise<object>} Returns a Promise with the Fetch results
    * @private
    */
   CRUDModel.prototype._callService = function(urlPath, parameters) {

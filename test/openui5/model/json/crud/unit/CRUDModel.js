@@ -1,9 +1,9 @@
+'use strict';
+
 sap.ui.require([
   'sap/ui/model/json/JSONModel',
   'openui5/model/json/crud/CRUDModel'
 ], function(JSONModel, CRUDModel) {
-  'use strict';
-
   const {test} = QUnit;
   const sandbox = (sinon.createSandbox) ? sinon.createSandbox() : sinon.sandbox.create();
   const serviceUrl = 'http://localhost:3000/api/';
@@ -13,6 +13,13 @@ sap.ui.require([
   const mockPayload = {a: 1, b: 2, c: 3};
   const startData = {a: 9, b: 8, c: 7, z: 0};
 
+  /**
+   * Mock Response API
+   *
+   * @param {boolean} ok - Request successful
+   * @param {number} status - HTTP status
+   * @returns {Promise<Response>} Response
+   */
   function mockResponseApi(ok, status) {
     return {
       ok: ok,
