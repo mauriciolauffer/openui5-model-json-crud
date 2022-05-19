@@ -1,9 +1,6 @@
 # openui5-model-json-crud
 
-![Travis (.org)](https://img.shields.io/travis/mauriciolauffer/openui5-model-json-crud)
-[![npm](https://img.shields.io/npm/v/openui5-model-json-crud)](https://www.npmjs.com/package/openui5-model-json-crud)
-![NPM](https://img.shields.io/npm/l/openui5-model-json-crud)
-[![linkedin-shield](https://img.shields.io/badge/LinkedIn-black?style=flat-square&logo=linkedin&colorB=555)](https://www.linkedin.com/in/mauriciolauffer)
+[![npm](https://img.shields.io/npm/v/openui5-model-json-crud)](https://www.npmjs.com/package/openui5-model-json-crud) [![test](https://github.com/mauriciolauffer/openui5-model-json-crud/actions/workflows/test.yml/badge.svg)](https://github.com/mauriciolauffer/openui5-model-json-crud/actions/workflows/test.yml)
 
 An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations. It uses fetch (not jQuery.ajax) to send requests to the server and populates a JSON Model with the responses.
 As aforementioned, OpenUI5 CRUD JSON Model uses fetch hence it returns Promises.
