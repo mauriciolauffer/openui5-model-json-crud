@@ -1,0 +1,45 @@
+{
+  "name": "eslint-config-mlauffer-nodejs",
+  "version": "1.4.5",
+  "description": "ESLint shareable config for Nodejs",
+  "private": false,
+  "author": "Mauricio Lauffer",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**"
+  ],
+  "scripts": {
+    "lint": "eslint lib --cache",
+    "lint:ci": "eslint lib -f @microsoft/eslint-formatter-sarif -o eslint.sarif",
+    "test": "npm run lint"
+  },
+  "keywords": [
+    "eslint",
+    "config",
+    "javascript",
+    "node",
+    "nodejs"
+  ],
+  "dependencies": {
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-anti-trojan-source": "^1.1.1",
+    "eslint-plugin-jsdoc": "^46.8.2",
+    "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-sonarjs": "^0.22.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=8"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauriciolauffer/eslint-config-mlauffer-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mauriciolauffer/eslint-config-mlauffer-nodejs.git/issues"
+  }
+}

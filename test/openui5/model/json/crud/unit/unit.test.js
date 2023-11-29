@@ -1,3 +1,5 @@
+'use strict';
+
 describe('QUnit test page', () => {
   it('should pass QUnit tests', async () => {
     const url = 'http://localhost:8080/test-resources/openui5/model/json/crud/unit/unitTests.html';

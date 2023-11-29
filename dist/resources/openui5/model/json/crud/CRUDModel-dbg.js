@@ -2,7 +2,7 @@
 
 /*
  * openui5-model-json-crud
- * (c) Copyright 2018-2022 Mauricio Lauffer
+ * (c) Copyright 2018-2023 Mauricio Lauffer
  * Licensed under the MIT license. See LICENSE file in the project root for full license information.
  */
 
@@ -12,7 +12,6 @@ sap.ui.define([
 ],
 /**
  * Module Dependencies
- *
  * @param {sap.base.Log} Log UI5 logger
  * @param {sap.ui.model.json.JSONModel} JSONModel UI5 JSONModel
  * @returns {object} CRUDModel object, an extended UI5 JSONModel
@@ -32,7 +31,6 @@ function(Log, JSONModel) {
 
   /**
    * OpenUI5 CRUDModel extends JSONModel to support CRUD operations.
-   *
    * @author Mauricio Lauffer
    * @version 0.0.15
    * @class
@@ -50,7 +48,6 @@ function(Log, JSONModel) {
 
     /**
      * Constructor for a new Validator.
-     *
      * @class
      * @augments sap.ui.model.json.JSONModel
      * @function Object() { [native code] }
@@ -69,7 +66,6 @@ function(Log, JSONModel) {
   /**
    * Get Fetch parameters to be used.
    * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
-   *
    * @returns {object} Fetch parameters object
    * @public
    */
@@ -80,7 +76,6 @@ function(Log, JSONModel) {
   /**
    * Set Fetch parameters to be used.
    * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
-   *
    * @param {object} parameters Fetch parameters object
    * @public
    */
@@ -91,7 +86,6 @@ function(Log, JSONModel) {
   /**
    * Get HTTP methods for CRUD operations.
    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
-   *
    * @returns {object} HTTP Methods to be used by the CRUD operations
    * @public
    */
@@ -102,7 +96,6 @@ function(Log, JSONModel) {
   /**
    * Set HTTP methods for CRUD operations.
    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
-   *
    * @param {object} httpMethods HTTP Methods to be used by the CRUD operations
    * @public
    */
@@ -113,7 +106,6 @@ function(Log, JSONModel) {
   /**
    * Creates entry in the backend and into the local model
    * It returns a Response Object from Fetch - https://developer.mozilla.org/en-US/docs/Web/API/Response
-   *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @param {any} payload The payload to be sent to the service
@@ -134,7 +126,6 @@ function(Log, JSONModel) {
   /**
    * Reads entry from the backend and save it into the local model
    * It returns a Response Object from Fetch - https://developer.mozilla.org/en-US/docs/Web/API/Response
-   *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
@@ -154,7 +145,6 @@ function(Log, JSONModel) {
   /**
    * Updates entry in the backend and into the local model
    * It returns a Response Object from Fetch - https://developer.mozilla.org/en-US/docs/Web/API/Response
-   *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @param {any} payload The payload to be sent to the service
@@ -175,7 +165,6 @@ function(Log, JSONModel) {
   /**
    * Deletes entry from the backend and from the local model
    * It returns a Response Object from Fetch - https://developer.mozilla.org/en-US/docs/Web/API/Response
-   *
    * @param {string} urlPath The path to the service
    * @param {string} propertyPath The path to the property into the model; empty value does not update local model
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
@@ -207,7 +196,6 @@ function(Log, JSONModel) {
   /**
    * Set Fetch parameters to be used.
    * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters
-   *
    * @param {any} body The payload to be sent to the service
    * @param {string} httpMethod The HTTP Method to be used in the operation
    * @returns {object} Fetch parameters
@@ -223,7 +211,6 @@ function(Log, JSONModel) {
   /**
    * Calls Fetch API
    * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-   *
    * @param {string} urlPath The path to the service
    * @param {object} parameters Fetch parameters to be used
    * @returns {Promise<object>} Returns a Promise with the Fetch results
