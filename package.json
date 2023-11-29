@@ -16,6 +16,7 @@
   ],
   "main": "dist/resources/openui5/model/json/crud/library-preload.js",
   "browser": "dist/resources/openui5/model/json/crud/library-preload.js",
+  "type": "module",
   "files": [
     "dist",
     "src",
@@ -24,6 +25,11 @@
   "devDependencies": {
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@openui5/ts-types": "^1.102.0",
+    "@wdio/cli": "^8.24.3",
+    "@wdio/devtools-service": "^8.24.3",
+    "@wdio/local-runner": "^8.24.3",
+    "@wdio/mocha-framework": "^8.24.3",
+    "@wdio/spec-reporter": "^8.24.2",
     "eslint": "^8.15.0",
     "eslint-config-mlauffer-ui5": "^0.3.2",
     "karma": "^6.3.20",
@@ -31,7 +37,8 @@
     "karma-coverage": "^2.2.0",
     "karma-coveralls": "^2.1.0",
     "karma-junit-reporter": "^2.0.1",
-    "karma-ui5": "^2.4.0"
+    "karma-ui5": "^2.4.0",
+    "wdio-qunit-service": "^0.1.0"
   },
   "scripts": {
     "start": "ui5 serve",
@@ -40,8 +47,10 @@
     "lint": "eslint src test demo",
     "lint:fix": "eslint src test demo --fix",
     "lint:ci": "eslint src test -f @microsoft/eslint-formatter-sarif -o target/eslint.sarif",
-    "test": "karma start",
-    "test:ci": "karma start karma.ci.conf"
+    "testx": "karma start",
+    "testx:ci": "karma start karma.ci.conf",
+    "test": "wdio ./test/openui5/model/json/crud/wdio.conf.js",
+    "test:ci": "wdio run ./test/openui5/model/json/crud/wdio.conf.js"
   },
   "repository": {
     "type": "git",
