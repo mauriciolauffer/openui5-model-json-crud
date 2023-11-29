@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export const config = {
   specs: [
     './**/*.test.js'

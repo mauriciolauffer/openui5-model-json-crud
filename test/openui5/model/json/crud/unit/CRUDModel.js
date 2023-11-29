@@ -15,7 +15,6 @@ sap.ui.require([
 
   /**
    * Mock Response API
-   *
    * @param {boolean} ok - Request successful
    * @param {number} status - HTTP status
    * @returns {Promise<Response>} Response
