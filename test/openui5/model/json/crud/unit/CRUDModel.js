@@ -47,6 +47,18 @@ sap.ui.require([
         assert.strictEqual(model instanceof JSONModel, true);
         assert.strictEqual(model._serviceUrl, serviceUrl);
       });
+
+      test('Should instantiate the control with options', (assert) => {
+        const options = {
+          headers: {a: 1, b: 2},
+          keepalive: true
+        };
+        const model = new CRUDModel(serviceUrl, options);
+        assert.strictEqual(model instanceof JSONModel, true);
+        assert.strictEqual(model._serviceUrl, serviceUrl);
+        assert.strictEqual(model.getFetchParameters().keepalive, options.keepalive);
+        assert.deepEqual(model.getFetchParameters().headers, options.headers);
+      });
     });
 
     QUnit.module('getFetchParameters', () => {
