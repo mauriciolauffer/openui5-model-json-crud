@@ -51,13 +51,15 @@ function(Log, JSONModel) {
      * @function Object() { [native code] }
      * @param {string} serviceUrl Base URI of the service to request data from;
      *                            additional URL parameters appended here will be appended to every request.
+     * @param {Request} options Fetch request options
      * @public
      */
-    constructor: function(serviceUrl) {
+    constructor: function(serviceUrl, options) {
       JSONModel.apply(this, []);
       this._serviceUrl = serviceUrl;
       this._fetchParameters = Object.assign({}, defaultFetchParameters);
       this._httpMethods = Object.assign({}, defaultHttpMethods);
+      this.setFetchParameters(options);
     }
   });
 
@@ -110,15 +112,13 @@ function(Log, JSONModel) {
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
-  CRUDModel.prototype.create = function(urlPath, propertyPath, payload) {
+  CRUDModel.prototype.create = async function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().create);
-    return this._callService(urlPath, parameters)
-        .then(function(result) {
-          if (propertyPath) {
-            this.setProperty(propertyPath, result.data);
-          }
-          return result.response;
-        }.bind(this));
+    const result = await this._callService(urlPath, parameters);
+    if (propertyPath) {
+      this.setProperty(propertyPath, result.data);
+    }
+    return result.response;
   };
 
   /**
@@ -129,15 +129,13 @@ function(Log, JSONModel) {
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
-  CRUDModel.prototype.read = function(urlPath, propertyPath) {
+  CRUDModel.prototype.read = async function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().read);
-    return this._callService(urlPath, parameters)
-        .then(function(result) { //eslint-disable-line
-          if (propertyPath) {
-            this.setProperty(propertyPath, result.data);
-          }
-          return result.response;
-        }.bind(this));
+    const result = await this._callService(urlPath, parameters);
+    if (propertyPath) {
+      this.setProperty(propertyPath, result.data);
+    }
+    return result.response;
   };
 
   /**
@@ -149,15 +147,13 @@ function(Log, JSONModel) {
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
-  CRUDModel.prototype.update = function(urlPath, propertyPath, payload) {
+  CRUDModel.prototype.update = async function(urlPath, propertyPath, payload) {
     const parameters = this._mergeParameters(payload, this.getHttpMethods().update);
-    return this._callService(urlPath, parameters)
-        .then(function(result) {
-          if (propertyPath) {
-            this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
-          }
-          return result.response;
-        }.bind(this));
+    const result = await this._callService(urlPath, parameters);
+    if (propertyPath) {
+      this.setProperty(propertyPath, Object.assign(this.getProperty(propertyPath), result.data));
+    }
+    return result.response;
   };
 
   /**
@@ -168,27 +164,25 @@ function(Log, JSONModel) {
    * @returns {Promise<Response>} Returns a Promise, if resolved, resolves with a Response Object returned from Fetch
    * @public
    */
-  CRUDModel.prototype.delete = function(urlPath, propertyPath) {
+  CRUDModel.prototype.delete = async function(urlPath, propertyPath) {
     const parameters = this._mergeParameters(null, this.getHttpMethods().delete);
-    return this._callService(urlPath, parameters)
-        .then(function(result) {
-          if (propertyPath) {
-            const lastSlash = propertyPath.lastIndexOf('/');
-            const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
-            const propertyOnlyPath = propertyPath.substr(lastSlash + 1);
-            const modelEntry = this.getProperty(objectOnlyPath);
-            if (Array.isArray(modelEntry[propertyOnlyPath])) {
-              modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
-            } else if (Array.isArray(modelEntry)) {
-              modelEntry.splice(propertyOnlyPath, 1);
-            } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
-              delete modelEntry[propertyOnlyPath];
-            } else {
-              logger.warning(propertyPath + ' was not found in the local model');
-            }
-          }
-          return result.response;
-        }.bind(this));
+    const result = await this._callService(urlPath, parameters);
+    if (propertyPath) {
+      const lastSlash = propertyPath.lastIndexOf('/');
+      const objectOnlyPath = propertyPath.substring(0, lastSlash || 1);
+      const propertyOnlyPath = propertyPath.substring(lastSlash + 1);
+      const modelEntry = this.getProperty(objectOnlyPath);
+      if (Array.isArray(modelEntry[propertyOnlyPath])) {
+        modelEntry[propertyOnlyPath].splice(propertyOnlyPath, 1);
+      } else if (Array.isArray(modelEntry)) {
+        modelEntry.splice(parseInt(propertyOnlyPath), 1);
+      } else if (this.getProperty(propertyPath) && typeof modelEntry === 'object') {
+        delete modelEntry[propertyOnlyPath];
+      } else {
+        logger.warning(propertyPath + ' was not found in the local model');
+      }
+    }
+    return result.response;
   };
 
   /**
@@ -214,26 +208,20 @@ function(Log, JSONModel) {
    * @returns {Promise<object>} Returns a Promise with the Fetch results
    * @private
    */
-  CRUDModel.prototype._callService = function(urlPath, parameters) {
+  CRUDModel.prototype._callService = async function(urlPath, parameters) {
     const path = urlPath || '';
     const url = this._serviceUrl + path;
     const result = {
       data: null,
       response: {}
     };
-    return fetch(url, parameters)
-        .then(function(response) {
-          if (response.ok) {
-            result.response = response.clone();
-            return response.json();
-          } else {
-            throw response;
-          }
-        })
-        .then(function(data) {
-          result.data = data;
-          return result;
-        });
+    const response = await fetch(url, parameters);
+    if (!response.ok) {
+      throw response;
+    }
+    result.response = response.clone();
+    result.data = await response.json();
+    return result;
   };
 
   return CRUDModel;
