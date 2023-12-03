@@ -14,8 +14,8 @@ sap.ui.require.preload({
  * openui5-model-json-crud
  * (c) Copyright 2018-2023 Mauricio Lauffer
  * Licensed under the MIT license. See LICENSE file in the project root for full license information.
- */sap.ui.define(["sap/ui/core/Lib","sap/ui/core/library"],function(e){return e.init({name:"openui5.model.json.crud",dependencies:["sap.ui.core"],controls:["openui5.model.json.crud.CRUDModel"],noLibraryCSS:true,version:"0.0.15"})});
+ */sap.ui.define(["sap/ui/core/Lib","sap/ui/core/library"],function(e){return e.init({name:"openui5.model.json.crud",dependencies:["sap.ui.core"],controls:["openui5.model.json.crud.CRUDModel"],noLibraryCSS:true,version:"1.0.0"})});
 },
-	"openui5/model/json/crud/manifest.json":'{"sap.app":{"id":"openui5.model.json.crud","type":"library","applicationVersion":{"version":"0.0.15"},"title":"An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations using fetch."},"sap.ui":{"technology":"UI5","deviceTypes":{"desktop":true,"tablet":true,"phone":true}},"sap.ui5":{"dependencies":{"minUI5Version":"1.120.0","libs":{"sap.ui.core":{}}},"contentDensities":{"compact":true,"cozy":true}}}'
+	"openui5/model/json/crud/manifest.json":'{"sap.app":{"id":"openui5.model.json.crud","type":"library","applicationVersion":{"version":"1.0.0"},"title":"An OpenUI5 library which extends JSONModel to support CRUD (Create, Read, Update, Delete) operations using fetch."},"sap.ui":{"technology":"UI5","deviceTypes":{"desktop":true,"tablet":true,"phone":true}},"sap.ui5":{"dependencies":{"minUI5Version":"1.120.0","libs":{"sap.ui.core":{}}},"contentDensities":{"compact":true,"cozy":true}}}'
 });
 //# sourceMappingURL=library-preload.js.map

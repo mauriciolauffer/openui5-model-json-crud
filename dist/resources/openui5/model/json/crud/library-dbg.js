@@ -21,7 +21,7 @@ function(Lib) {
    * @namespace
    * @name openui5.model.json.crud
    * @author Mauricio Lauffer
-   * @version 0.0.15
+   * @version 1.0.0
    * @public
    */
   return Lib.init({
@@ -33,6 +33,6 @@ function(Lib) {
       'openui5.model.json.crud.CRUDModel'
     ],
     noLibraryCSS: true,
-    version: '0.0.15'
+    version: '1.0.0'
   });
 });

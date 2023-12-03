@@ -32,7 +32,7 @@ function(Log, JSONModel) {
   /**
    * OpenUI5 CRUDModel extends JSONModel to support CRUD operations.
    * @author Mauricio Lauffer
-   * @version 0.0.15
+   * @version 1.0.0
    * @class
    * @namespace
    * @name openui5.model.json.crud
