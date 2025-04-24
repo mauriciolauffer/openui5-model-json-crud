@@ -25,6 +25,7 @@ export default defineConfig([
       globals: {
         ...globals.qunit,
         ...globals.mocha,
+        sinon: "readonly",
       },
     },
     rules: {
