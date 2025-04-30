@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable sonarjs/no-nested-functions */
+
 sap.ui.require([
   'sap/ui/model/json/JSONModel',
   'openui5/model/json/crud/CRUDModel'
