@@ -23,11 +23,11 @@
     "ui5.yaml"
   ],
   "devDependencies": {
-    "@openui5/ts-types": "^1.120.1",
+    "@openui5/ts-types": "^1.135.0",
     "eslint": "^9.25.1",
     "eslint-config-mlauffer-ui5": "^2.1.0",
     "eslint-plugin-wdio": "^9.9.1",
-    "wdio-qunit-service": "^1.3.0"
+    "wdio-qunit-service": "^2.0.0"
   },
   "scripts": {
     "start": "ui5 serve",
