@@ -47,6 +47,6 @@
     "url": "https://github.com/mauriciolauffer/openui5-model-json-crud/issues"
   },
   "dependencies": {
-    "@wdio/spec-reporter": "^9.12.6"
+    "@wdio/spec-reporter": "^9.18.0"
   }
 }
